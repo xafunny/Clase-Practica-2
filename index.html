@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrusel de imágenes</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <h1>Carrusel de imágenes</h1>
+  <h2>Integrantes</h2>
+  <p>Jhoao Guala, Danna Idrovo, Madelen Toledo <br> Ckarlos Daza, Diego Cobeña</p>
+
+  <div class="carrusel">
+    <img src="imagenes/img1.jpg" alt="Imagen 1" class="activa">
+    <img src="imagenes/img2.jpg" alt="Imagen 2">
+    <img src="imagenes/img3.jpg" alt="Imagen 3">
+    <img src="imagenes/img4.jpg" alt="Imagen 4">
+
+    <button id="anterior">&#10094;</button>
+    <button id="siguiente">&#10095;</button>
+  </div>
+
+  <p id="contador">1 / 4</p>
+
+  <script>
+    var imagenes = document.querySelectorAll(".carrusel img");
+    var actual = 0;
+
+    function mostrar(n) {
+      imagenes[actual].classList.remove("activa");
+      actual = n;
+      imagenes[actual].classList.add("activa");
+      document.getElementById("contador").textContent = (actual + 1) + " / " + imagenes.length;
+    }
+
+    document.getElementById("siguiente").onclick = function () {
+      mostrar((actual + 1) % imagenes.length);
+    };
+
+    document.getElementById("anterior").onclick = function () {
+      mostrar((actual - 1 + imagenes.length) % imagenes.length);
+    };
+  </script>
+</body>
+</html>
